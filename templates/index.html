@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>RAG Demo (Science/Math/Tech)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; margin: 2rem; }
+    .container { max-width: 900px; margin: auto; }
+    textarea, input { width: 100%; padding: 0.75rem; font-size: 1rem; }
+    button { padding: 0.6rem 1rem; font-size: 1rem; cursor: pointer; }
+    .answer { white-space: pre-wrap; background: #fafafa; padding: 1rem; border-radius: 6px; border: 1px solid #eaeaea; }
+    .sources { margin-top: 1rem; font-size: 0.95rem; color: #333; }
+    .source-pill { display: inline-block; padding: 0.25rem 0.5rem; background: #eef; border: 1px solid #ccd; border-radius: 999px; margin-right: 0.5rem; }
+    .small { color: #666; font-size: 0.9rem; }
+
+    /* Image gallery styling */
+    .source-block { margin: 0.5rem 0 1rem 0; }
+    .source-images { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+    .source-images img { max-width: 240px; height: auto; border-radius: 4px; border: 1px solid #e0e0e0; }
+  </style>
+
+  <!-- KaTeX (synchronous LaTeX renderer) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script>
+    // Expose a safe render function for the answer element
+    document.addEventListener('DOMContentLoaded', () => {
+      window.renderAnswerMath = function(el) {
+        if (!window.renderMathInElement || !el) return;
+        renderMathInElement(el, {
+          delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "\\[", right: "\\]", display: true},
+            {left: "$", right: "$", display: false},
+            {left: "\\(", right: "\\)", display: false}
+          ],
+          throwOnError: false
+        });
+      };
+    });
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h1>RAG Demo: Science / Math / Tech</h1>
+    <p class="small">
+      Type your question below. The system will retrieve from your indexed PDFs and answer with citations.
+    </p>
+
+    <textarea id="query" rows="5" placeholder="Ask a question about your PDFs..."></textarea>
+    <div style="margin-top: 0.5rem;">
+      <label>Top K:
+        <input type="number" id="topk" value="5" min="1" max="20" style="width: 80px;" />
+      </label>
+      <button id="ask">Ask</button>
+    </div>
+
+    <h2>Answer</h2>
+    <div id="answer" class="answer">No answer yet.</div>
+
+    <div class="sources">
+      <strong>Sources:</strong>
+      <div id="sources"></div>
+    </div>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
