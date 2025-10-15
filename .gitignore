@@ -1,2 +1,8 @@
 .env
 secrets
+pycache/
+*.pyc
+DS_Store
+data/pdfs/
+db/
+rag.sqlite
