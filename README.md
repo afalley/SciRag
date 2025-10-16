@@ -1,13 +1,13 @@
 SciRag — Simple RAG over your PDFs (FastAPI)
 
-SciRag is a minimal Retrieval-Augmented Generation (RAG) demo focused on science, math, and technology content. It lets you index local PDFs into a tiny SQLite-backed vector store, then ask questions via a small web UI with cited sources.
+SciRag is a minimal Retrieval-Augmented Generation (RAG) demo focused on science, math, and technology content, or so it was in dev, however for size and copyright reasons the pdfs and sqlite db was ommited :-( but it worked well with a large corpus of ebooks. It lets you index local PDFs into a tiny SQLite-backed vector store, then ask questions via a small web UI with cited sources.
 
 Features
 - PDF indexing with simple, restartable batches
 - Lightweight vector store in SQLite (JSON-encoded embeddings)
 - FastAPI backend with a basic HTML/JS front-end
 - OpenAI embeddings + chat completions (easily swappable)
-- Source citations and basic LaTeX rendering on the page
+- Source citations and basic LaTeX rendering on the page, making it great for science!
 
 Project layout
 - app/main.py — FastAPI app (GET / and POST /query)
