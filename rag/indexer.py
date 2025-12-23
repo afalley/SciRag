@@ -9,7 +9,7 @@ Indexer CLI:
 
 Run:
   python -m rag.indexer --pdfs-dir data/pdfs --db db/rag.sqlite
-Cool!
+Cool!!
 """
 from rich import print
 import argparse
